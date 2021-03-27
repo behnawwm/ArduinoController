@@ -49,4 +49,9 @@ dependencies {
     // Lottie Animation Library
     implementation 'com.airbnb.android:lottie:3.6.0'
 
+    //recyclerview animation
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+    implementation 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
+
+
 }

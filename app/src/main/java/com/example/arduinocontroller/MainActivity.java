@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.example.arduinocontroller.PairedList.BluetoothListAdapter;
 import com.example.arduinocontroller.PairedList.BluetoothListItem;
 import com.example.arduinocontroller.Utils.Utils;
+import com.mikepenz.itemanimators.AlphaInAnimator;
+import com.mikepenz.itemanimators.SlideInOutLeftAnimator;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -25,9 +27,15 @@ import java.util.UUID;
 
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
 import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
+import it.gmariotti.recyclerview.itemanimator.SlideInOutLeftItemAnimator;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 public class MainActivity extends AppCompatActivity {
-    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    static final String BLUETOOTH_ADDRESS = "bb_address";
 
     BluetoothAdapter myBluetooth;
     BluetoothReceiver mReceiver;
@@ -111,11 +119,19 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new BluetoothListAdapter(pairedList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        ////////////////
+//        mRecyclerView.setItemAnimator(new SlideInOutLeftItemAnimator(mRecyclerView));
+        ////////////////
+
         mAdapter.setOnItemClickListener(new BluetoothListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
 //                changeItem(position, "Clicked");
-                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, CommandActivity.class);
+                intent.putExtra(BLUETOOTH_ADDRESS, pairedDevicesList.get(position).getAddress());
+                startActivity(intent);
             }
 
             @Override
