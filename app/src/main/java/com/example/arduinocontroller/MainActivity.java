@@ -17,22 +17,13 @@ import android.widget.Toast;
 
 import com.example.arduinocontroller.PairedList.BluetoothListAdapter;
 import com.example.arduinocontroller.PairedList.BluetoothListItem;
-import com.example.arduinocontroller.Utils.Utils;
-import com.mikepenz.itemanimators.AlphaInAnimator;
-import com.mikepenz.itemanimators.SlideInOutLeftAnimator;
+import com.example.arduinocontroller.Utils.BluetoothUtils;
 
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.UUID;
 
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
 import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
-import it.gmariotti.recyclerview.itemanimator.SlideInOutLeftItemAnimator;
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 public class MainActivity extends AppCompatActivity {
     static final String BLUETOOTH_ADDRESS = "bb_address";
@@ -57,23 +48,23 @@ public class MainActivity extends AppCompatActivity {
         mReceiver = new BluetoothReceiver(getApplicationContext());
         registerReceiver(mReceiver, filter);
 
+
         setBluetooth(true);
+        setupPairedDevicesList();
+    }
+
+    public boolean setBluetooth(boolean enable) {
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         if (myBluetooth == null) {
             Toast.makeText(getApplicationContext(), "Bluetooth device not available", Toast.LENGTH_LONG).show();
             finish();
         }
 
-        setupPairedDevicesList();
-    }
-
-    public static boolean setBluetooth(boolean enable) {
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        boolean isEnabled = bluetoothAdapter.isEnabled();
+        boolean isEnabled = myBluetooth.isEnabled();
         if (enable && !isEnabled) {
-            return bluetoothAdapter.enable();
+            return myBluetooth.enable();
         } else if (!enable && isEnabled) {
-            return bluetoothAdapter.disable();
+            return myBluetooth.disable();
         }
         // No need to change bluetooth state
         return true;
@@ -149,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Unpair", R.drawable.ic_bt_disconnect, new MaterialDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-                        Utils.unpairDevice(pairedDevicesList.get(position));
+                        BluetoothUtils.unpairDevice(pairedDevicesList.get(position));
                         Toast.makeText(MainActivity.this, "Unpaired!", Toast.LENGTH_SHORT).show();
                         mAdapter.notifyDataSetChanged();
                         dialogInterface.dismiss();

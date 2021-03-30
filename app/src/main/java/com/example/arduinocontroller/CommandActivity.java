@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -28,6 +29,13 @@ public class CommandActivity extends AppCompatActivity {
 
         address = getIntent().getStringExtra(MainActivity.BLUETOOTH_ADDRESS);
         new ConnectBT().execute();
+
+        findViewById(R.id.btn_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendSignal("1");
+            }
+        });
     }
 
     private void sendSignal(String number) {

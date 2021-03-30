@@ -50,8 +50,13 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.6.0'
 
     //recyclerview animation
-    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
-    implementation 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
+//    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+//    implementation 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
+
+    //rxJava & rxAndroid
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
+
 
 
 }

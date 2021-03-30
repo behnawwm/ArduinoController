@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothDevice;
 
 import java.lang.reflect.Method;
 
-public class Utils {
+public class BluetoothUtils {
 
     public static void unpairDevice(BluetoothDevice device) {
         try {
