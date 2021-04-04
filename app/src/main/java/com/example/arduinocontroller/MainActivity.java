@@ -75,14 +75,14 @@ public class MainActivity extends AppCompatActivity implements BluetoothListAdap
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_items, menu);
+        inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.item1:
+            case R.id.menu_main_refresh:
                 setupPairedDevicesList();
                 return true;
             default:

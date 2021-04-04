@@ -20,4 +20,18 @@
         <item name="material_dialog_positive_button_text_color">#FFFFFF</item>
         <item name="material_dialog_negative_button_text_color">@color/google</item>
     </style>
+
+    <!--    Bottom Sheet-->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_bottom_sheet_cornered</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+    <!---->
+
 </resources>

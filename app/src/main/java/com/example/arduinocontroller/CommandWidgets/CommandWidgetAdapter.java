@@ -58,7 +58,7 @@ public class CommandWidgetAdapter extends RecyclerView.Adapter<CommandWidgetAdap
 
     @Override
     public CommandWidgetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.command_widget_command, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_widget_command, parent, false);
         CommandWidgetViewHolder evh = new CommandWidgetViewHolder(v, mListener);
         return evh;
     }

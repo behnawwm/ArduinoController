@@ -9,18 +9,18 @@ import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.arduinocontroller.CommandWidgets.CommandWidgetAdapter;
 import com.example.arduinocontroller.CommandWidgets.CommandWidgetItem;
 import com.example.arduinocontroller.Utils.DialogUtils;
+import com.example.arduinocontroller.Widgets.Button.ButtonActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import es.dmoral.toasty.Toasty;
@@ -43,8 +43,8 @@ public class CommandActivity extends AppCompatActivity {
 
         //////////////
         ArrayList<CommandWidgetItem> mExampleList = new ArrayList<>();
-        mExampleList.add(new CommandWidgetItem(R.drawable.switch_button, "Switch"));
-        mExampleList.add(new CommandWidgetItem(R.drawable.button, "Button"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.switch_button, "Button"));
+//        mExampleList.add(new CommandWidgetItem(R.drawable.button, "Button"));
         mExampleList.add(new CommandWidgetItem(R.drawable.dimmer, "Dimmer"));
         mExampleList.add(new CommandWidgetItem(R.drawable.voice, "Voice Command"));
         mExampleList.add(new CommandWidgetItem(R.drawable.terminal, "Terminal"));
@@ -66,6 +66,13 @@ public class CommandActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
 //                changeItem(position, "Clicked");
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(CommandActivity.this, ButtonActivity.class));
+                        break;
+                    default:
+
+                }
             }
 
             @Override

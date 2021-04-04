@@ -77,7 +77,7 @@ public class BluetoothListAdapter extends RecyclerView.Adapter<BluetoothListAdap
 
     @Override
     public BluetoothListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.bluetooth_list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_bluetooth, parent, false);
         BluetoothListViewHolder evh = new BluetoothListViewHolder(v, mListener);
         return evh;
     }
