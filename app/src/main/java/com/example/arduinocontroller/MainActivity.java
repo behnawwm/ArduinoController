@@ -24,8 +24,9 @@ import java.util.Set;
 
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
 import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
+import es.dmoral.toasty.Toasty;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BluetoothListAdapter.OnItemClickListener {
     static final String BLUETOOTH_ADDRESS = "bb_address";
 
     BluetoothAdapter myBluetooth;
@@ -49,15 +50,16 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(mReceiver, filter);
 
 
-        setBluetooth(true);
+        if (!setBluetooth(true))
+            Toasty.warning(getBaseContext(), "Bluetooth device not available", Toast.LENGTH_LONG).show();
+
         setupPairedDevicesList();
     }
 
     public boolean setBluetooth(boolean enable) {
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         if (myBluetooth == null) {
-            Toast.makeText(getApplicationContext(), "Bluetooth device not available", Toast.LENGTH_LONG).show();
-            finish();
+            return false;
         }
 
         boolean isEnabled = myBluetooth.isEnabled();
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             for (BluetoothDevice bt : pairedDevices)
                 pairedList.add(new BluetoothListItem(bt.getName(), bt.getAddress()));
         else
-            Toast.makeText(getApplicationContext(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
+            Toasty.info(getBaseContext(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
 
         buildRecyclerView();
     }
@@ -111,39 +113,25 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        ////////////////
-//        mRecyclerView.setItemAnimator(new SlideInOutLeftItemAnimator(mRecyclerView));
-        ////////////////
-
-        mAdapter.setOnItemClickListener(new BluetoothListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-//                changeItem(position, "Clicked");
-//                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, CommandActivity.class);
-                intent.putExtra(BLUETOOTH_ADDRESS, pairedDevicesList.get(position).getAddress());
-                startActivity(intent);
-            }
-
-            @Override
-            public void onDeleteClick(int position) {
-                removeItem(position);
-            }
-        });
+        mAdapter.setOnItemClickListener(this);
     }
 
     private void removeItem(int position) {
         MaterialDialog mDialog = new MaterialDialog.Builder(this)
-                .setTitle("Unpair?")
+                .setTitle("Unpair ?")
                 .setMessage("Are you sure you want to unpair this device?")
                 .setCancelable(false)
                 .setPositiveButton("Unpair", R.drawable.ic_bt_disconnect, new MaterialDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-                        BluetoothUtils.unpairDevice(pairedDevicesList.get(position));
-                        Toast.makeText(MainActivity.this, "Unpaired!", Toast.LENGTH_SHORT).show();
+                        if (!BluetoothUtils.unpairDevice(pairedDevicesList.get(position))) {
+                            Toasty.warning(getBaseContext(), "Unable to unpair this device!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        Toasty.success(getBaseContext(), "Unpaired!", Toast.LENGTH_LONG).show();
                         mAdapter.notifyDataSetChanged();
                         dialogInterface.dismiss();
+                        setupPairedDevicesList();
                     }
                 })
                 .setNegativeButton("Cancel", R.drawable.ic_close, new MaterialDialog.OnClickListener() {
@@ -171,6 +159,27 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please enable Bluetooth!", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, CommandActivity.class);
+        intent.putExtra(BLUETOOTH_ADDRESS, pairedDevicesList.get(position).getAddress());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        removeItem(position);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        mReceiver = new BluetoothReceiver(getApplicationContext());
+        registerReceiver(mReceiver, filter);
     }
 
     @Override

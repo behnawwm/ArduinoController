@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loadingPanel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:padding="8dp">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_loading_dialog"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/loading2" />
+
+    <TextView
+        android:id="@+id/tv_loading_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_loading_dialog"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:padding="16dp"
+        android:text="Connecting..."
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</RelativeLayout>

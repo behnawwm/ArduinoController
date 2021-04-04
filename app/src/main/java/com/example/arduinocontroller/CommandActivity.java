@@ -1,17 +1,28 @@
 package com.example.arduinocontroller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import com.example.arduinocontroller.CommandWidgets.CommandWidgetAdapter;
+import com.example.arduinocontroller.CommandWidgets.CommandWidgetItem;
+import com.example.arduinocontroller.Utils.DialogUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import es.dmoral.toasty.Toasty;
 
 public class CommandActivity extends AppCompatActivity {
     BluetoothAdapter myBluetooth = null;
@@ -19,7 +30,6 @@ public class CommandActivity extends AppCompatActivity {
     private boolean isBtConnected = false;
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     String address = null;
-    private ProgressDialog progress;
 
 
     @Override
@@ -36,6 +46,29 @@ public class CommandActivity extends AppCompatActivity {
                 sendSignal("1");
             }
         });
+        //////////////
+        ArrayList<CommandWidgetItem> mExampleList = new ArrayList<>();
+        mExampleList.add(new CommandWidgetItem(R.drawable.ic_refresh, "Line 1"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.ic_delete, "Line 3"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.ic_bt_disconnect, "Line 5"));
+
+        RecyclerView mRecyclerView = findViewById(R.id.rv_cmnd);
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        CommandWidgetAdapter mAdapter = new CommandWidgetAdapter(mExampleList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new CommandWidgetAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+//                changeItem(position, "Clicked");
+            }
+            @Override
+            public void onDeleteClick(int position) {
+//                removeItem(position);
+            }
+        });
     }
 
     private void sendSignal(String number) {
@@ -43,7 +76,7 @@ public class CommandActivity extends AppCompatActivity {
             try {
                 btSocket.getOutputStream().write(number.getBytes());
             } catch (IOException e) {
-//                msg("Error");
+                Toasty.error(getBaseContext(), "Error sending signal\n" + e, Toast.LENGTH_SHORT, true).show();
             }
         }
     }
@@ -53,7 +86,7 @@ public class CommandActivity extends AppCompatActivity {
             try {
                 btSocket.close();
             } catch (IOException e) {
-//                msg("Error");
+                Toasty.error(getBaseContext(), "Error disconnecting from device\n" + e, Toast.LENGTH_SHORT, true).show();
             }
         }
 
@@ -62,10 +95,12 @@ public class CommandActivity extends AppCompatActivity {
 
     private class ConnectBT extends AsyncTask<Void, Void, Void> {
         private boolean ConnectSuccess = true;
+        AlertDialog alertDialog;
 
         @Override
         protected void onPreExecute() {
-            progress = ProgressDialog.show(CommandActivity.this, "Connecting...", "Please Wait!!!");
+            alertDialog = DialogUtils.createLoadingDialog(CommandActivity.this);
+            alertDialog.show();
         }
 
         @Override
@@ -90,13 +125,13 @@ public class CommandActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             if (!ConnectSuccess) {
-//                msg("Connection Failed. Is it a SPP Bluetooth? Try again.");
+                Toasty.error(getBaseContext(), "Connection Failed. Is it a SPP Bluetooth? Try again.", Toast.LENGTH_SHORT, true).show();
                 finish();
             } else {
-//                msg("Connected");
+                Toasty.success(getBaseContext(), "Connected!", Toast.LENGTH_SHORT, true).show();
                 isBtConnected = true;
             }
-            progress.dismiss();
+            alertDialog.dismiss();
         }
     }
 }

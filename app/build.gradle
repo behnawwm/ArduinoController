@@ -57,6 +57,16 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
 
+    //Custom toast
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
+
+    //custom dialogs
+//    implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.6'
+
+    //gif imageView
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
+
+
 
 
 }
