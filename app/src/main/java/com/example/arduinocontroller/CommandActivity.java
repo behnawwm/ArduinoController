@@ -1,6 +1,7 @@
 package com.example.arduinocontroller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,25 +39,27 @@ public class CommandActivity extends AppCompatActivity {
         setContentView(R.layout.activity_command);
 
         address = getIntent().getStringExtra(MainActivity.BLUETOOTH_ADDRESS);
-        new ConnectBT().execute();
+//        new ConnectBT().execute();
 
-        findViewById(R.id.btn_test).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendSignal("1");
-            }
-        });
         //////////////
         ArrayList<CommandWidgetItem> mExampleList = new ArrayList<>();
-        mExampleList.add(new CommandWidgetItem(R.drawable.ic_refresh, "Line 1"));
-        mExampleList.add(new CommandWidgetItem(R.drawable.ic_delete, "Line 3"));
-        mExampleList.add(new CommandWidgetItem(R.drawable.ic_bt_disconnect, "Line 5"));
-
+        mExampleList.add(new CommandWidgetItem(R.drawable.switch_button, "Switch"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.button, "Button"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.dimmer, "Dimmer"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.voice, "Voice Command"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.terminal, "Terminal"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.joystick, "Joystick"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.accelerometer, "Accelerometer"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.timer, "Timer"));
+        mExampleList.add(new CommandWidgetItem(R.drawable.custom, "Custom"));
+        //////////////
         RecyclerView mRecyclerView = findViewById(R.id.rv_cmnd);
         mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         CommandWidgetAdapter mAdapter = new CommandWidgetAdapter(mExampleList);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new CommandWidgetAdapter.OnItemClickListener() {
@@ -64,6 +67,7 @@ public class CommandActivity extends AppCompatActivity {
             public void onItemClick(int position) {
 //                changeItem(position, "Clicked");
             }
+
             @Override
             public void onDeleteClick(int position) {
 //                removeItem(position);
