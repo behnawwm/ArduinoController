@@ -15,7 +15,7 @@ public class ButtonWidgetViewHolder extends RecyclerView.ViewHolder {
 
     private ButtonWidgetViewHolder(View itemView) {
         super(itemView);
-        wordItemView = itemView.findViewById(R.id.textView);
+        wordItemView = itemView.findViewById(R.id.tv_name_list_widget_button);
     }
 
     public void bind(String text) {

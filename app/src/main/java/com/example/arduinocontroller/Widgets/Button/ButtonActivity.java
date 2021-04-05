@@ -5,13 +5,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
+import com.example.arduinocontroller.Utils.AnimationUtils;
 import com.example.arduinocontroller.Widgets.Button.BottomSheet.ButtonWidgetBottomSheetDialog;
 import com.example.arduinocontroller.Widgets.Button.RV.ButtonWidgetViewModel;
 
@@ -19,6 +26,8 @@ public class ButtonActivity extends AppCompatActivity {
     private ButtonWidgetViewModel mButtonWidgetViewModel;
     RecyclerView recyclerView;
     ButtonWidgetAdapter adapter;
+
+    boolean enable = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,19 @@ public class ButtonActivity extends AppCompatActivity {
         mButtonWidgetViewModel.getAllItems().observe(this, items -> {
             adapter.submitList(items);
         });
+        ////////animation
+        ImageView iv = findViewById(R.id.tessst);
+        Button btn = findViewById(R.id.btttn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnimationUtils.turnOnAnimation(getBaseContext(), iv);
+            }
+
+        });
+
+//        TransitionDrawable transition = (TransitionDrawable) iv.getBackground();
+//        transition.startTransition(2000);
         ////////
     }
 

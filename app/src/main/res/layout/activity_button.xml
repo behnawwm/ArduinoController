@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Widgets.Button.ButtonActivity">
 
+    <Button
+        android:id="@+id/btttn"
+        android:text="sssssssssssssss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/tessst"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/switch_off" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_widget_button"
         android:layout_width="match_parent"

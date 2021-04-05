@@ -1,12 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/command_widget_item_layout"
+    android:orientation="horizontal"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll_list_widget_button_left"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
-</LinearLayout>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name_list_widget_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button 1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON:"
+                android:textColor="@color/forest_green"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_on_list_widget_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:text="turn_on"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF:"
+                android:textColor="@color/google"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_off_list_widget_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:text="turn_off"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--    <com.github.angads25.toggle.widget.LabeledSwitch-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:textSize="14sp"-->
+    <!--        app:colorOff="@color/google"-->
+    <!--        app:colorOn="@color/forest_green"-->
+    <!--        app:on="false" />-->
+
+    <!--    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup-->
+    <!--        android:id="@+id/time"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        app:alignItems="center">-->
+
+    <!--        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton-->
+    <!--            android:id="@+id/btn1"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="38dp"-->
+    <!--            app:layout_flexShrink="0"-->
+    <!--            app:toggle_backgroundColor="@color/google"-->
+    <!--            app:toggle_selectedBackgroundColor="@color/forest_green"-->
+    <!--            app:toggle_selectedText="on"-->
+    <!--            app:toggle_text="off"-->
+    <!--            app:toggle_textColor="@color/black" />-->
+
+    <!--    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>-->
+
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/dots" />
+
+
+</RelativeLayout>
