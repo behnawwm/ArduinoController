@@ -25,16 +25,6 @@ public class ButtonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_button);
         getSupportActionBar().setTitle("Button");
 
-        Button btn = findViewById(R.id.widget_button_test);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ButtonWidgetBottomSheetDialog bottomSheet = new ButtonWidgetBottomSheetDialog();
-                bottomSheet.show(getSupportFragmentManager(),
-                        "ModalBottomSheet");
-            }
-        });
-
     }
 
     @Override
@@ -48,7 +38,7 @@ public class ButtonActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_switch_add:
-//                setupPairedDevicesList();
+                setupAddBottomSheet();
                 return true;
             case R.id.menu_switch_delete:
                 //sth
@@ -56,6 +46,12 @@ public class ButtonActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void setupAddBottomSheet() {
+        ButtonWidgetBottomSheetDialog bottomSheet = new ButtonWidgetBottomSheetDialog();
+        bottomSheet.show(getSupportFragmentManager(),
+                "ModalBottomSheet");
     }
 
 

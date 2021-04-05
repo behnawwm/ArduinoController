@@ -67,8 +67,8 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
 
     //custom switch
-    implementation 'com.github.angads25:toggle:1.1.0'
-    implementation 'com.llollox:androidtoggleswitch:2.0.1'
+//    implementation 'com.llollox:androidtoggleswitch:2.0.1'
+    compile 'com.github.davidmigloz:multi-state-switch:2.0.1'
 
 
 }
