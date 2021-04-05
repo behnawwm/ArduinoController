@@ -56,7 +56,8 @@
                 android:id="@+id/bottom_sheet_widget_button_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Button1" />
+                android:hint="Button1"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +113,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/bottom_sheet_widget_button_on"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -124,7 +126,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/bottom_sheet_widget_button_off"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -20,7 +21,10 @@
         <item name="material_dialog_positive_button_text_color">#FFFFFF</item>
         <item name="material_dialog_negative_button_text_color">@color/google</item>
     </style>
-
+    <!--    customized Theme-->
+<!--    <style name="AppTheme" parent="Theme.MaterialComponents.Light">-->
+<!--        <item name="android:fontFamily"></item>-->
+<!--    </style>-->
     <!--    Bottom Sheet-->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/background_bottom_sheet_cornered</item>

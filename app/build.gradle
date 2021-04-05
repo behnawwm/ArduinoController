@@ -70,5 +70,10 @@ dependencies {
 //    implementation 'com.llollox:androidtoggleswitch:2.0.1'
     compile 'com.github.davidmigloz:multi-state-switch:2.0.1'
 
+    //Room
+    def room_version = "2.2.6"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.fragment:fragment-ktx:1.3.2"
 
 }

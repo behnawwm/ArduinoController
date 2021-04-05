@@ -1,23 +1,24 @@
 package com.example.arduinocontroller.Widgets.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.example.arduinocontroller.Widgets.Button.BottomSheet.ButtonWidgetBottomSheetDialog;
+import com.example.arduinocontroller.Widgets.Button.RV.ButtonWidgetViewModel;
 
 public class ButtonActivity extends AppCompatActivity {
+    private ButtonWidgetViewModel mButtonWidgetViewModel;
+    RecyclerView recyclerView;
+    ButtonWidgetAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,25 @@ public class ButtonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_button);
         getSupportActionBar().setTitle("Button");
 
+        /////////
+        recyclerView = findViewById(R.id.rv_widget_button);
+        adapter = new ButtonWidgetAdapter(new ButtonWidgetAdapter.WordDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mButtonWidgetViewModel = new ViewModelProvider(this).get(ButtonWidgetViewModel.class);
+        mButtonWidgetViewModel.getAllItems().observe(this, items -> {
+            adapter.submitList(items);
+        });
+        ////////
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,6 +61,10 @@ public class ButtonActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_switch_delete:
                 //sth
+                ////
+                ButtonWidgetItem mamad = new ButtonWidgetItem("qq", 1, "qqqq", "qqqqq");
+                mButtonWidgetViewModel.insert(mamad);
+                ///
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

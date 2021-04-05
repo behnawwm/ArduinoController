@@ -1,10 +1,38 @@
-package com.example.arduinocontroller.Widgets.Button;
+package com.example.arduinocontroller.DB.Model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class ButtonWidgetItem {
+
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "text")
     private String text;
+
+    // 0 -> push
+    // 1 -> toggle
+    @ColumnInfo(name = "type")
     private int type;
+
+
+    @ColumnInfo(name = "on")
     private String onCommand;
+
+    @ColumnInfo(name = "off")
     private String offCommand;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getText() {
         return text;
