@@ -1,14 +1,11 @@
-package com.example.arduinocontroller.Widgets.Button.BottomSheet;
+package com.example.arduinocontroller.UI.Widgets.Button.BottomSheet;
 
-import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,11 +15,10 @@ import com.davidmiguel.multistateswitch.State;
 import com.davidmiguel.multistateswitch.StateListener;
 import com.example.arduinocontroller.R;
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
-import com.example.arduinocontroller.Widgets.Button.RV.ButtonWidgetViewModel;
+import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 

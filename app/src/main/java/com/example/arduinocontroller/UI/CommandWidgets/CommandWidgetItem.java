@@ -1,4 +1,4 @@
-package com.example.arduinocontroller.CommandWidgets;
+package com.example.arduinocontroller.UI.CommandWidgets;
 
 public class CommandWidgetItem {
 

@@ -71,36 +71,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--    <com.github.angads25.toggle.widget.LabeledSwitch-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        android:textSize="14sp"-->
-    <!--        app:colorOff="@color/google"-->
-    <!--        app:colorOn="@color/forest_green"-->
-    <!--        app:on="false" />-->
-
-    <!--    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup-->
-    <!--        android:id="@+id/time"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        app:alignItems="center">-->
-
-    <!--        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton-->
-    <!--            android:id="@+id/btn1"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="38dp"-->
-    <!--            app:layout_flexShrink="0"-->
-    <!--            app:toggle_backgroundColor="@color/google"-->
-    <!--            app:toggle_selectedBackgroundColor="@color/forest_green"-->
-    <!--            app:toggle_selectedText="on"-->
-    <!--            app:toggle_text="off"-->
-    <!--            app:toggle_textColor="@color/black" />-->
-
-    <!--    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>-->
-
-
+    <ImageView
+        android:id="@+id/iv_toggle_list_widget_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/switch_off" />
 
     <ImageView
         android:layout_width="30dp"

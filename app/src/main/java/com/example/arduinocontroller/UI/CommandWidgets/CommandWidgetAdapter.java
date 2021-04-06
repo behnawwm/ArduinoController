@@ -1,4 +1,4 @@
-package com.example.arduinocontroller.CommandWidgets;
+package com.example.arduinocontroller.UI.CommandWidgets;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,19 +39,6 @@ public class CommandWidgetAdapter extends RecyclerView.Adapter<CommandWidgetAdap
             super(itemView);
             mImageView = itemView.findViewById(R.id.iv_cmnd);
             mTextView1 = itemView.findViewById(R.id.tv_cmnd);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
-
         }
 
     }

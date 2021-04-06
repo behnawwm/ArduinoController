@@ -14,10 +14,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.arduinocontroller.CommandWidgets.CommandWidgetAdapter;
-import com.example.arduinocontroller.CommandWidgets.CommandWidgetItem;
+import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetAdapter;
+import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetItem;
 import com.example.arduinocontroller.Utils.DialogUtils;
-import com.example.arduinocontroller.Widgets.Button.ButtonActivity;
+import com.example.arduinocontroller.UI.Widgets.Button.ButtonActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;

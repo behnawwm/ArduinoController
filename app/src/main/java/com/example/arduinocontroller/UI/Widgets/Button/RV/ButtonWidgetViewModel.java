@@ -1,4 +1,4 @@
-package com.example.arduinocontroller.Widgets.Button.RV;
+package com.example.arduinocontroller.UI.Widgets.Button.RV;
 
 import android.app.Application;
 
@@ -29,5 +29,7 @@ public class ButtonWidgetViewModel extends AndroidViewModel {
     public void insert(ButtonWidgetItem item) {
         mRepository.insert(item);
     }
-
+    public void deleteAll(){
+        mRepository.deleteAll();
+    }
 }

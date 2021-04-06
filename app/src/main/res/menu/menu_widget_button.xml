@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_switch_add"
-        android:icon="@drawable/ic_baseline_add_24"
-        android:title="Add"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/menu_switch_delete"
         android:icon="@drawable/ic_baseline_delete_forever_24"
         android:title="Delete All"

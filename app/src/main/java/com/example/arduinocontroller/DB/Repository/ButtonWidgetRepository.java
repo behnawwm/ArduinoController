@@ -29,4 +29,10 @@ public class ButtonWidgetRepository {
             mButtonWidgetDao.insert(item);
         });
     }
+
+    public void deleteAll() {
+        ButtonWidgetDatabase.databaseWriteExecutor.execute(() -> {
+            mButtonWidgetDao.deleteAll();
+        });
+    }
 }

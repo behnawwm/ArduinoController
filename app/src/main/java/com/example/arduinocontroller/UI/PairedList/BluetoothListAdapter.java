@@ -1,4 +1,4 @@
-package com.example.arduinocontroller.PairedList;
+package com.example.arduinocontroller.UI.PairedList;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
