@@ -2,6 +2,7 @@ package com.example.arduinocontroller.UI.Widgets.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,17 +11,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
 import com.example.arduinocontroller.UI.Widgets.Button.BottomSheet.ButtonWidgetBottomSheetDialog;
 import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetAdapter;
+import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewHolder;
 import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewModel;
+import com.example.arduinocontroller.Utils.AnimationUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mikepenz.itemanimators.AlphaInAnimator;
 
 import java.util.ArrayList;
 
-public class ButtonActivity extends AppCompatActivity {
+public class ButtonActivity extends AppCompatActivity implements ButtonWidgetViewHolder.OnWidgetButtonListener {
     private ButtonWidgetViewModel mButtonWidgetViewModel;
     RecyclerView recyclerView;
     ButtonWidgetAdapter adapter;
@@ -47,12 +52,13 @@ public class ButtonActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        adapter = new ButtonWidgetAdapter(getBaseContext(), mList);
+        adapter = new ButtonWidgetAdapter(getBaseContext(), mList, this);
         mButtonWidgetViewModel = new ViewModelProvider(this).get(ButtonWidgetViewModel.class);
         mButtonWidgetViewModel.getAllItems().observe(this, items -> {
             adapter.updateButtonWidgetListItems(items);
         });
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(new AlphaInAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -80,5 +86,17 @@ public class ButtonActivity extends AppCompatActivity {
         bottomSheet.show(getSupportFragmentManager(),
                 "ModalBottomSheet");
     }
+
+    @Override
+    public void onItemClick(int position) {
+//        Toast.makeText(this, "item click", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onOptionsClick(int position) {
+        Toast.makeText(this, "options click", Toast.LENGTH_SHORT).show();
+
+    }
+
 
 }

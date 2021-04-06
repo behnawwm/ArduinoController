@@ -18,11 +18,13 @@ import java.util.List;
 
 public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHolder> {
     Context mContext;
+    private ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener;
     private ArrayList<ButtonWidgetItem> mItems = new ArrayList<>();
 
-    public ButtonWidgetAdapter(Context mContext, ArrayList<ButtonWidgetItem> items) {
+    public ButtonWidgetAdapter(Context mContext, ArrayList<ButtonWidgetItem> items, ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener) {
         this.mItems = items;
         this.mContext = mContext;
+        this.mOnWidgetButtonListener = mOnWidgetButtonListener;
     }
 
     @NonNull
@@ -30,7 +32,7 @@ public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHo
     public ButtonWidgetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_list_widget_button, parent, false);
-        return new ButtonWidgetViewHolder(view);
+        return new ButtonWidgetViewHolder(view, mOnWidgetButtonListener);
     }
 
     @Override
@@ -44,6 +46,9 @@ public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHo
         return mItems.size();
     }
 
+    public void toggleButton(int position){
+
+    }
     public void updateButtonWidgetListItems(List<ButtonWidgetItem> list) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new ButtonWidgetDiff(this.mItems, list));
         this.mItems.clear();

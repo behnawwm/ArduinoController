@@ -79,6 +79,7 @@
         android:background="@drawable/switch_off" />
 
     <ImageView
+        android:id="@+id/iv_options_list_widget_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
