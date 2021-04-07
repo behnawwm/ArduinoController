@@ -46,9 +46,6 @@ public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHo
         return mItems.size();
     }
 
-    public void toggleButton(int position){
-
-    }
     public void updateButtonWidgetListItems(List<ButtonWidgetItem> list) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new ButtonWidgetDiff(this.mItems, list));
         this.mItems.clear();

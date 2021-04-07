@@ -29,6 +29,11 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
 
     int switchState;
 
+    TextInputEditText etName;
+    TextInputEditText etOn;
+    TextInputEditText etOff;
+    MultiStateSwitch switchType;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable
             ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,11 +44,12 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
 
         ImageView btnClose = v.findViewById(R.id.bottom_sheet_widget_button_close);
         Button btnSave = v.findViewById(R.id.bottom_sheet_widget_button_save);
-        TextInputEditText etName = v.findViewById(R.id.bottom_sheet_widget_button_name);
-        TextInputEditText etOn = v.findViewById(R.id.bottom_sheet_widget_button_on);
-        TextInputEditText etOff = v.findViewById(R.id.bottom_sheet_widget_button_off);
-        MultiStateSwitch switchType = v.findViewById(R.id.bottom_sheet_widget_button_type);
+        etName = v.findViewById(R.id.bottom_sheet_widget_button_name);
+        etOn = v.findViewById(R.id.bottom_sheet_widget_button_on);
+        etOff = v.findViewById(R.id.bottom_sheet_widget_button_off);
+        switchType = v.findViewById(R.id.bottom_sheet_widget_button_type);
 
+        setUpSavedStats(savedInstanceState);
         setUpMultiStateSwitch(switchType);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +78,15 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
         });
 
         return v;
+    }
+
+    private void setUpSavedStats(Bundle saved) {
+        if (saved != null) {
+            etName.setText(saved.getString("widget_name", ""));
+            etOn.setText(saved.getString("widget_on", ""));
+            etName.setText(saved.getString("widget_off", ""));
+            switchType.selectState(saved.getInt("widget_type", 0));
+        }
     }
 
     private void setUpMultiStateSwitch(MultiStateSwitch switchType) {

@@ -10,7 +10,7 @@ import com.example.arduinocontroller.R;
 public class AnimationUtils {
 
 
-    public static void turnOnAnimation(Context mContext, View iv) {
+    public static void buttonWidgetTurnOnOffAnimation(Context mContext, View iv) {
 
         if (iv.getBackground().getConstantState().equals(mContext.getResources().getDrawable(R.drawable.switch_off).getConstantState())) {
             iv.animate()
@@ -52,6 +52,52 @@ public class AnimationUtils {
 
                     });
 //            enable = !enable;
+        }
+    }
+
+    public static void buttonWidgetTurnAnimation(Context mContext, View iv, boolean enable) {
+        if (enable) {
+            if (iv.getBackground().getConstantState().equals(mContext.getResources().getDrawable(R.drawable.switch_off).getConstantState())) {
+                iv.animate()
+                        .alpha(0f)
+                        .setDuration(200)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                iv.setBackgroundResource(R.drawable.switch_on);
+                                iv.animate()
+                                        .alpha(1f)
+                                        .setDuration(200)
+                                        .setListener(new AnimatorListenerAdapter() {
+                                            @Override
+                                            public void onAnimationEnd(Animator animation) {
+                                            }
+                                        });
+                            }
+
+                        });
+            }
+        } else {
+            if (iv.getBackground().getConstantState().equals(mContext.getResources().getDrawable(R.drawable.switch_on).getConstantState())) {
+                iv.animate()
+                        .alpha(0f)
+                        .setDuration(200)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                iv.setBackgroundResource(R.drawable.switch_off);
+                                iv.animate()
+                                        .alpha(1f)
+                                        .setDuration(200)
+                                        .setListener(new AnimatorListenerAdapter() {
+                                            @Override
+                                            public void onAnimationEnd(Animator animation) {
+                                            }
+                                        });
+                            }
+
+                        });
+            }
         }
     }
 }

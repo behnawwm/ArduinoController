@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class ButtonWidgetItem {
-
+    public final static int TYPE_PUSH = 0;
+    public final static int TYPE_TOGGLE = 1;
 
     @PrimaryKey(autoGenerate = true)
     private int id;
