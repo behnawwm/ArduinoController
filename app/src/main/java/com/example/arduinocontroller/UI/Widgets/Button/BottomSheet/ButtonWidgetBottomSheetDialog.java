@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,6 +35,16 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
     TextInputEditText etOff;
     MultiStateSwitch switchType;
 
+    ButtonWidgetItem savedItem;
+
+    public ButtonWidgetBottomSheetDialog() {
+
+    }
+
+    public ButtonWidgetBottomSheetDialog(ButtonWidgetItem item) {
+        this.savedItem = item;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable
             ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,7 +60,7 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
         etOff = v.findViewById(R.id.bottom_sheet_widget_button_off);
         switchType = v.findViewById(R.id.bottom_sheet_widget_button_type);
 
-        setUpSavedStats(savedInstanceState);
+        setUpSavedStats(savedItem);
         setUpMultiStateSwitch(switchType);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +82,12 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
                             switchState,
                             etOn.getText().toString(),
                             etOff.getText().toString());
-                    mButtonWidgetViewModel.insert(item);
+
+                    if (savedItem == null)
+                        mButtonWidgetViewModel.insert(item);
+                    else
+                        mButtonWidgetViewModel.update(savedItem, item);
+
                     dismiss();
                 }
             }
@@ -80,12 +96,12 @@ public class ButtonWidgetBottomSheetDialog extends BottomSheetDialogFragment {
         return v;
     }
 
-    private void setUpSavedStats(Bundle saved) {
+    private void setUpSavedStats(ButtonWidgetItem saved) {
         if (saved != null) {
-            etName.setText(saved.getString("widget_name", ""));
-            etOn.setText(saved.getString("widget_on", ""));
-            etName.setText(saved.getString("widget_off", ""));
-            switchType.selectState(saved.getInt("widget_type", 0));
+            etName.setText(saved.getText());
+            etOn.setText(saved.getOnCommand());
+            etOff.setText(saved.getOffCommand());
+            switchType.selectState(saved.getType());
         }
     }
 

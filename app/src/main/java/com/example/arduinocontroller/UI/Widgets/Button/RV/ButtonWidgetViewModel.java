@@ -29,7 +29,18 @@ public class ButtonWidgetViewModel extends AndroidViewModel {
     public void insert(ButtonWidgetItem item) {
         mRepository.insert(item);
     }
-    public void deleteAll(){
+
+    public void deleteAll() {
         mRepository.deleteAll();
     }
+
+    public void update(ButtonWidgetItem savedItem, ButtonWidgetItem item) {
+        mRepository.update(savedItem, item);
+    }
+
+    public void deleteById(int id) {
+        mRepository.deleteById(id);
+    }
+
+
 }

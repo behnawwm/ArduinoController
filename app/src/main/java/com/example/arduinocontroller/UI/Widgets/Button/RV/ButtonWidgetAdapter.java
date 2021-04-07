@@ -1,5 +1,6 @@
 package com.example.arduinocontroller.UI.Widgets.Button.RV;
 
+import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,11 +21,11 @@ import java.util.List;
 public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHolder> {
     Context mContext;
     private ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener;
-    private ArrayList<ButtonWidgetItem> mItems = new ArrayList<>();
+    private List<ButtonWidgetItem> mItems = new ArrayList<>();
 
-    public ButtonWidgetAdapter(Context mContext, ArrayList<ButtonWidgetItem> items, ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener) {
+    public ButtonWidgetAdapter(Context context, List<ButtonWidgetItem> items, ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener) {
+        this.mContext = context;
         this.mItems = items;
-        this.mContext = mContext;
         this.mOnWidgetButtonListener = mOnWidgetButtonListener;
     }
 
@@ -38,7 +40,7 @@ public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHo
     @Override
     public void onBindViewHolder(@NonNull ButtonWidgetViewHolder holder, int position) {
         ButtonWidgetItem current = mItems.get(position);
-        holder.bind(mContext, current);
+        holder.bind(current);
     }
 
     @Override

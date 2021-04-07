@@ -35,4 +35,19 @@ public class ButtonWidgetRepository {
             mButtonWidgetDao.deleteAll();
         });
     }
+
+    public void update(ButtonWidgetItem savedItem, ButtonWidgetItem item) {
+        ButtonWidgetDatabase.databaseWriteExecutor.execute(() -> {
+            ButtonWidgetItem foundItem = mButtonWidgetDao.findByID(savedItem.getId());
+            item.setId(foundItem.getId());
+            mButtonWidgetDao.insert(item);
+        });
+    }
+
+    public void deleteById(int id) {
+        ButtonWidgetDatabase.databaseWriteExecutor.execute(() -> {
+            ButtonWidgetItem foundItem = mButtonWidgetDao.findByID(id);
+            mButtonWidgetDao.delete(foundItem);
+        });
+    }
 }

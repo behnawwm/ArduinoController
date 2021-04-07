@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="160dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="4dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_popup_edit_widget_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_baseline_edit_24" />
 
         <TextView
@@ -21,19 +23,23 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
             android:text="Edit"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
+    <View style="@style/Divider.Horizontal" />
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_popup_customize_widget_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/customize" />
 
         <TextView
@@ -42,28 +48,33 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
             android:text="Customize"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
+    <View style="@style/Divider.Horizontal" />
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_popup_delete_widget_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_baseline_star_24" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_delete" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
-            android:text="Favorite"
-            android:textColor="@color/black" />
+            android:text="Delete"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 </LinearLayout>

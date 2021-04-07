@@ -22,9 +22,9 @@
         <item name="material_dialog_negative_button_text_color">@color/google</item>
     </style>
     <!--    customized Theme-->
-<!--    <style name="AppTheme" parent="Theme.MaterialComponents.Light">-->
-<!--        <item name="android:fontFamily"></item>-->
-<!--    </style>-->
+    <!--    <style name="AppTheme" parent="Theme.MaterialComponents.Light">-->
+    <!--        <item name="android:fontFamily"></item>-->
+    <!--    </style>-->
     <!--    Bottom Sheet-->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/background_bottom_sheet_cornered</item>
@@ -36,6 +36,21 @@
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
-    <!---->
+    <!--DIVIDER-->
+    <style name="Divider">
+        <item name="android:background">?android:attr/listDivider</item>
+        //you can give your color here. that will change all divider color in your app.
+    </style>
 
+    <style name="Divider.Horizontal" parent="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        // You can change thickness here.
+    </style>
+
+    <style name="Divider.Vertical" parent="Divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <!---->
 </resources>

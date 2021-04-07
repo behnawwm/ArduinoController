@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 
@@ -19,8 +20,8 @@ public interface ButtonWidgetDao {
     @Query("SELECT * FROM buttonwidgetitem WHERE id is :id")
     ButtonWidgetItem findByID(int id);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertAll(ButtonWidgetItem... items);
+//    @Insert(onConflict = OnConflictStrategy.IGNORE)
+//    void insertAll(ButtonWidgetItem... items);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ButtonWidgetItem item);
@@ -31,5 +32,7 @@ public interface ButtonWidgetDao {
     @Query("DELETE FROM buttonwidgetitem")
     void deleteAll();
 
+    @Update()
+    void update(ButtonWidgetItem item);
 
 }

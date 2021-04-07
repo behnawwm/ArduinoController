@@ -71,12 +71,19 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_toggle_list_widget_button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/switch_off" />
+        <ImageView
+            android:id="@+id/iv_toggle_list_widget_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/switch_off" />
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/iv_toggle_list_widget_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:background="@drawable/button_widget_button_toggle"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true" />-->
+
 
     <ImageView
         android:id="@+id/iv_options_list_widget_button"
