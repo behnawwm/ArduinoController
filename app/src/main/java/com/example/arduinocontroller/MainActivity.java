@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.arduinocontroller.UI.PairedList.BluetoothListAdapter;
 import com.example.arduinocontroller.UI.PairedList.BluetoothListItem;
+import com.example.arduinocontroller.Utils.BluetoothReceiver;
 import com.example.arduinocontroller.Utils.BluetoothUtils;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.arduinocontroller;
+package com.example.arduinocontroller.Utils;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;

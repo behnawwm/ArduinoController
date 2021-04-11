@@ -10,7 +10,7 @@ import com.example.arduinocontroller.R;
 
 public class DialogUtils {
 
-    public static AlertDialog createLoadingDialog(Activity activity) {
+    public AlertDialog createLoadingDialog(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         ViewGroup viewGroup = activity.findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(activity.getBaseContext()).inflate(R.layout.dialog_loading, viewGroup, false);

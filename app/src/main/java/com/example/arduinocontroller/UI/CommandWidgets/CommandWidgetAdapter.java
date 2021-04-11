@@ -9,53 +9,31 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arduinocontroller.R;
+import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewHolder;
 
 import java.util.ArrayList;
 
-public class CommandWidgetAdapter extends RecyclerView.Adapter<CommandWidgetAdapter.CommandWidgetViewHolder> {
+public class CommandWidgetAdapter extends RecyclerView.Adapter<CommandWidgetViewHolder> {
+    private CommandWidgetViewHolder.OnCommandItemClickListener onCommandItemClickListener;
 
     private ArrayList<CommandWidgetItem> mList;
-    private OnItemClickListener mListener;
 
-    public CommandWidgetAdapter(ArrayList<CommandWidgetItem> exampleList) {
+    public CommandWidgetAdapter(ArrayList<CommandWidgetItem> exampleList, CommandWidgetViewHolder.OnCommandItemClickListener listener) {
         mList = exampleList;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-
-        void onDeleteClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
-    }
-
-    public static class CommandWidgetViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
-        public TextView mTextView1;
-
-        public CommandWidgetViewHolder(View itemView, final OnItemClickListener listener) {
-            super(itemView);
-            mImageView = itemView.findViewById(R.id.iv_cmnd);
-            mTextView1 = itemView.findViewById(R.id.tv_cmnd);
-        }
-
+        this.onCommandItemClickListener = listener;
     }
 
     @Override
     public CommandWidgetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_widget_command, parent, false);
-        CommandWidgetViewHolder evh = new CommandWidgetViewHolder(v, mListener);
+        CommandWidgetViewHolder evh = new CommandWidgetViewHolder(v, onCommandItemClickListener);
         return evh;
     }
 
     @Override
     public void onBindViewHolder(CommandWidgetViewHolder holder, int position) {
         CommandWidgetItem currentItem = mList.get(position);
-
-        holder.mImageView.setImageResource(currentItem.getImageResource());
-        holder.mTextView1.setText(currentItem.getText1());
+        holder.bind(currentItem);
     }
 
     @Override

@@ -1,35 +1,38 @@
 package com.example.arduinocontroller.UI.Widgets.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.arduinocontroller.CommandActivity;
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
 import com.example.arduinocontroller.UI.Widgets.Button.BottomSheet.ButtonWidgetBottomSheetDialog;
 import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetAdapter;
 import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewHolder;
 import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewModel;
-import com.example.arduinocontroller.Utils.AnimationUtils;
+import com.example.arduinocontroller.Utils.BluetoothUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.mikepenz.itemanimators.AlphaInAnimator;
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
-import com.skydoves.balloon.BalloonSizeSpec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,8 @@ import java.util.List;
 import stream.customalert.CustomAlertDialogue;
 
 public class ButtonActivity extends AppCompatActivity implements ButtonWidgetViewHolder.OnWidgetButtonListener {
+    BluetoothUtils bluetoothUtils;
+
     private ButtonWidgetViewModel mButtonWidgetViewModel;
     RecyclerView recyclerView;
     ButtonWidgetAdapter adapter;
@@ -48,6 +53,11 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button);
         getSupportActionBar().setTitle("Button");
+
+        //todo this & send singnal further
+        String address = getIntent().getStringExtra(CommandActivity.BLUETOOTH_ADDRESS);
+        bluetoothUtils = new BluetoothUtils(ButtonActivity.this, address);
+        new BluetoothUtils.ConnectBT().execute();
 
         recyclerView = findViewById(R.id.rv_widget_button);
         fab = findViewById(R.id.fab_activity_widget_button);
@@ -154,6 +164,7 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
         balloon.getContentView().findViewById(R.id.btn_popup_customize_widget_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(ButtonActivity.this, "Coming soon...", Toast.LENGTH_SHORT).show();
                 //todo
             }
         });
@@ -190,4 +201,40 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onToggleClick(int position, boolean b) {
+        SwitchMaterial itemToggleView = recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.iv_toggle_list_widget_button);
+        View itemView = recyclerView.findViewHolderForAdapterPosition(position).itemView;
+
+        if (b) {
+            itemToggleView.setText("ON");
+            itemToggleView.setTextColor(itemView.getContext().getColor(R.color.forest_green));
+            itemView.setBackgroundColor(itemView.getContext().getColor(R.color.yellow2));
+        } else {
+            itemToggleView.setText("OFF");
+            itemToggleView.setTextColor(itemView.getContext().getColor(R.color.google));
+            itemView.setBackgroundColor(itemView.getContext().getColor(R.color.blue_grey_light));
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onTouchClick(int position, MotionEvent event) {
+        SwitchMaterial itemToggleView = recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.iv_toggle_list_widget_button);
+        View itemView = recyclerView.findViewHolderForAdapterPosition(position).itemView;
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            itemToggleView.setChecked(true);
+            itemToggleView.setText("ON");
+            itemToggleView.setTextColor(itemView.getContext().getColor(R.color.forest_green));
+            itemView.setBackgroundColor(itemView.getContext().getColor(R.color.yellow2));
+        } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+            itemToggleView.setChecked(false);
+            itemToggleView.setText("OFF");
+            itemToggleView.setTextColor(itemView.getContext().getColor(R.color.google));
+            itemView.setBackgroundColor(itemView.getContext().getColor(R.color.blue_grey_light));
+        }
+    }
 }
