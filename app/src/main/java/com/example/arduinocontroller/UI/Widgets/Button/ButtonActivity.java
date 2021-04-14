@@ -55,9 +55,9 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
         getSupportActionBar().setTitle("Button");
 
         //todo this & send singnal further
-        String address = getIntent().getStringExtra(CommandActivity.BLUETOOTH_ADDRESS);
-        bluetoothUtils = new BluetoothUtils(ButtonActivity.this, address);
-        new BluetoothUtils.ConnectBT().execute();
+//        String address = getIntent().getStringExtra(CommandActivity.BLUETOOTH_ADDRESS);
+//        bluetoothUtils = new BluetoothUtils(ButtonActivity.this, address);
+//        new BluetoothUtils.ConnectBT().execute();
 
         recyclerView = findViewById(R.id.rv_widget_button);
         fab = findViewById(R.id.fab_activity_widget_button);
