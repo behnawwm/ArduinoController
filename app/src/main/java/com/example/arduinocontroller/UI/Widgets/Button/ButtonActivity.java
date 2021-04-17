@@ -18,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.arduinocontroller.CommandActivity;
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
 import com.example.arduinocontroller.UI.Widgets.Button.BottomSheet.ButtonWidgetBottomSheetDialog;
@@ -204,7 +203,7 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onToggleClick(int position, boolean b) {
-        SwitchMaterial itemToggleView = recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.iv_toggle_list_widget_button);
+        SwitchMaterial itemToggleView = recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.switch_toggle_list_widget_button);
         View itemView = recyclerView.findViewHolderForAdapterPosition(position).itemView;
 
         if (b) {
@@ -221,7 +220,7 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onTouchClick(int position, MotionEvent event) {
-        SwitchMaterial itemToggleView = recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.iv_toggle_list_widget_button);
+        SwitchMaterial itemToggleView = recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.switch_toggle_list_widget_button);
         View itemView = recyclerView.findViewHolderForAdapterPosition(position).itemView;
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

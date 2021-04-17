@@ -30,7 +30,7 @@ public class ButtonWidgetViewHolder extends RecyclerView.ViewHolder implements V
         itemOnView = itemView.findViewById(R.id.tv_on_list_widget_button);
         itemOffView = itemView.findViewById(R.id.tv_off_list_widget_button);
 //        itemToggleView = itemView.findViewById(R.id.iv_toggle_list_widget_button);
-        itemToggleView = itemView.findViewById(R.id.iv_toggle_list_widget_button);
+        itemToggleView = itemView.findViewById(R.id.switch_toggle_list_widget_button);
         itemOptionsView = itemView.findViewById(R.id.iv_options_list_widget_button);
 
         this.onWidgetButtonListener = onWidgetButtonListener;

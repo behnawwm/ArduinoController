@@ -88,5 +88,9 @@ dependencies {
     //lottie animation
     implementation 'com.airbnb.android:lottie:3.7.0'
 
+    //custom seekbar
+     implementation 'com.xw.repo:bubbleseekbar:3.20'
+
+
 
 }

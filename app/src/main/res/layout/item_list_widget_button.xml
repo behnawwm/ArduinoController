@@ -71,6 +71,27 @@
                 android:text="turn_off"
                 android:textSize="10sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Command : "
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_command_list_widget_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="button1_"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <!--    <ImageView-->
@@ -81,11 +102,11 @@
     <!--        android:background="@drawable/switch_off" />-->
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/iv_toggle_list_widget_button"
+        android:id="@+id/switch_toggle_list_widget_button"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:text="OFF"
         android:layout_centerInParent="true"
+        android:text="OFF"
         android:textColor="@color/google"
         app:switchMinWidth="50dp" />
 

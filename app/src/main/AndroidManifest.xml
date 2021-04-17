@@ -12,15 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ArduinoController">
-        <activity android:name=".UI.Widgets.Dimmer.DimmerActivity"></activity>
-        <activity android:name=".UI.Widgets.Button.ButtonActivity"></activity>
-        <activity android:name=".CommandActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.Widgets.Dimmer.DimmerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".UI.Widgets.Button.ButtonActivity"></activity>
+        <activity android:name=".CommandActivity"></activity>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 
