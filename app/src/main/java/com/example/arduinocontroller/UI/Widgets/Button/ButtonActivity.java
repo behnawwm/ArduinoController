@@ -72,10 +72,10 @@ public class ButtonActivity extends AppCompatActivity implements ButtonWidgetVie
     }
 
     private void setUpRecyclerView() {
-        adapter = new ButtonWidgetAdapter(getApplicationContext(), mList, this);
+        adapter = new ButtonWidgetAdapter( this);
         mButtonWidgetViewModel = new ViewModelProvider(this).get(ButtonWidgetViewModel.class);
         mButtonWidgetViewModel.getAllItems().observe(this, items -> {
-            adapter.updateButtonWidgetListItems(items);
+            adapter.submitList(items);
             mList = items;
         });
         recyclerView.setAdapter(adapter);

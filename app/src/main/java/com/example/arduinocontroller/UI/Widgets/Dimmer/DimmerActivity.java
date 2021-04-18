@@ -80,10 +80,10 @@ public class DimmerActivity extends AppCompatActivity implements DimmerWidgetVie
     }
 
     private void setUpRecyclerview() {
-        adapter = new DimmerWidgetAdapter(getApplicationContext(), mList, this);
+        adapter = new DimmerWidgetAdapter(this);
         mDimmerWidgetViewModel = new ViewModelProvider(this).get(DimmerWidgetViewModel.class);
         mDimmerWidgetViewModel.getAllItems().observe(this, items -> {
-            adapter.updateDimmerWidgetListItems(items);
+            adapter.submitList(items);
             mList = items;
         });
         recyclerView.setAdapter(adapter);

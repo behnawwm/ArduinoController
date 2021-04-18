@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
@@ -16,14 +16,12 @@ import com.example.arduinocontroller.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHolder> {
-    Context mContext;
+public class ButtonWidgetAdapter extends ListAdapter<ButtonWidgetItem, ButtonWidgetViewHolder> {
     private ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener;
-    private List<ButtonWidgetItem> mItems = new ArrayList<>();
 
-    public ButtonWidgetAdapter(Context context, List<ButtonWidgetItem> items, ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener) {
-        this.mContext = context;
-        this.mItems = items;
+
+    public ButtonWidgetAdapter(ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener) {
+        super(DIFF_CALLBACK);
         this.mOnWidgetButtonListener = mOnWidgetButtonListener;
     }
 
@@ -37,58 +35,22 @@ public class ButtonWidgetAdapter extends RecyclerView.Adapter<ButtonWidgetViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ButtonWidgetViewHolder holder, int position) {
-        ButtonWidgetItem current = mItems.get(position);
+        ButtonWidgetItem current = getItem(position);
         holder.bind(current);
     }
 
-    @Override
-    public int getItemCount() {
-        return mItems.size();
-    }
-
-    public void updateButtonWidgetListItems(List<ButtonWidgetItem> list) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new ButtonWidgetDiff(this.mItems, list));
-        this.mItems.clear();
-        this.mItems.addAll(list);
-        diffResult.dispatchUpdatesTo(this);
-    }
-
-    static class ButtonWidgetDiff extends DiffUtil.Callback {
-        List<ButtonWidgetItem> oldItems;
-        List<ButtonWidgetItem> newItems;
-
-        public ButtonWidgetDiff(List<ButtonWidgetItem> oldItems, List<ButtonWidgetItem> newItems) {
-            this.oldItems = oldItems;
-            this.newItems = newItems;
-        }
-
-
+    private static final DiffUtil.ItemCallback<ButtonWidgetItem> DIFF_CALLBACK = new DiffUtil.ItemCallback<ButtonWidgetItem>() {
         @Override
-        public int getOldListSize() {
-            return oldItems.size();
+        public boolean areItemsTheSame(@NonNull ButtonWidgetItem oldItem, @NonNull ButtonWidgetItem newItem) {
+            return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public int getNewListSize() {
-            return newItems.size();
+        public boolean areContentsTheSame(@NonNull ButtonWidgetItem oldItem, @NonNull ButtonWidgetItem newItem) {
+            return oldItem.getText().equals(newItem.getText()) &&
+                    oldItem.getOffCommand().equals(newItem.getOffCommand()) &&
+                    oldItem.getOnCommand().equals(newItem.getOnCommand()) &&
+                    oldItem.getType() == newItem.getType();
         }
-
-        @Override
-        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldItems.get(oldItemPosition).getId() == newItems.get(newItemPosition).getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldItems.get(oldItemPosition).getText().equals(newItems.get(oldItemPosition).getText()) &&
-                    oldItems.get(oldItemPosition).getOnCommand().equals(newItems.get(oldItemPosition).getOnCommand()) &&
-                    oldItems.get(oldItemPosition).getOffCommand().equals(newItems.get(oldItemPosition).getOffCommand());
-        }
-
-        @Nullable
-        @Override
-        public Object getChangePayload(int oldItemPosition, int newItemPosition) {
-            return super.getChangePayload(oldItemPosition, newItemPosition);
-        }
-    }
+    };
 }

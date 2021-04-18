@@ -30,30 +30,11 @@ public abstract class ButtonWidgetDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ButtonWidgetDatabase.class, "button_database")
-                            .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
-
-    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-//                ButtonWidgetDao dao = INSTANCE.buttonWidgetDao();
-//                dao.deleteAll();
-
-//                ButtonWidgetItem word = new ButtonWidgetItem("1 or 0", 1, "1", "0");
-//                dao.insertAll(word);
-            });
-        }
-    };
+    //todo add sample button configs
 }

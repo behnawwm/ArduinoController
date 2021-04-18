@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
@@ -18,17 +19,15 @@ import com.example.arduinocontroller.UI.Widgets.Dimmer.DimmerActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DimmerWidgetAdapter extends RecyclerView.Adapter<DimmerWidgetViewHolder> {
-    Context mContext;
+public class DimmerWidgetAdapter extends ListAdapter<DimmerWidgetItem, DimmerWidgetViewHolder> {
     private DimmerWidgetViewHolder.OnWidgetDimmerListener mOnWidgetDimmerListener;
-    private List<DimmerWidgetItem> mItems = new ArrayList<>();
 
-    public DimmerWidgetAdapter(Context context, List<DimmerWidgetItem> items, DimmerWidgetViewHolder.OnWidgetDimmerListener mOnWidgetDimmerListener) {
-        this.mContext = context;
-        this.mItems = items;
+
+    public DimmerWidgetAdapter(DimmerWidgetViewHolder.OnWidgetDimmerListener mOnWidgetDimmerListener) {
+        super(DIFF_CALLBACK);
         this.mOnWidgetDimmerListener = mOnWidgetDimmerListener;
-    }
 
+    }
 
     @NonNull
     @Override
@@ -40,57 +39,22 @@ public class DimmerWidgetAdapter extends RecyclerView.Adapter<DimmerWidgetViewHo
 
     @Override
     public void onBindViewHolder(@NonNull DimmerWidgetViewHolder holder, int position) {
-        DimmerWidgetItem current = mItems.get(position);
+        DimmerWidgetItem current = getItem(position);
         holder.bind(current);
     }
 
-    @Override
-    public int getItemCount() {
-        return mItems.size();
-    }
 
-    public void updateDimmerWidgetListItems(List<DimmerWidgetItem> list) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DimmerWidgetDiff(this.mItems, list));
-        this.mItems.clear();
-        this.mItems.addAll(list);
-        diffResult.dispatchUpdatesTo(this);
-    }
-
-    static class DimmerWidgetDiff extends DiffUtil.Callback {
-        List<DimmerWidgetItem> oldItems;
-        List<DimmerWidgetItem> newItems;
-
-        public DimmerWidgetDiff(List<DimmerWidgetItem> oldItems, List<DimmerWidgetItem> newItems) {
-            this.oldItems = oldItems;
-            this.newItems = newItems;
-        }
-
-
+    private static final DiffUtil.ItemCallback<DimmerWidgetItem> DIFF_CALLBACK = new DiffUtil.ItemCallback<DimmerWidgetItem>() {
         @Override
-        public int getOldListSize() {
-            return oldItems.size();
+        public boolean areItemsTheSame(@NonNull DimmerWidgetItem oldItem, @NonNull DimmerWidgetItem newItem) {
+            return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public int getNewListSize() {
-            return newItems.size();
+        public boolean areContentsTheSame(@NonNull DimmerWidgetItem oldItem, @NonNull DimmerWidgetItem newItem) {
+            return oldItem.getText().equals(newItem.getText()) &&
+                    oldItem.getProgress() == newItem.getProgress();
+//                    oldItem.getCommand().equals(newItem.getCommand());
         }
-
-        @Override
-        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldItems.get(oldItemPosition).getId() == newItems.get(newItemPosition).getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldItems.get(oldItemPosition).getText().equals(newItems.get(oldItemPosition).getText()) &&
-                    oldItems.get(oldItemPosition).getProgress() == (newItems.get(oldItemPosition).getProgress());
-        }
-
-        @Nullable
-        @Override
-        public Object getChangePayload(int oldItemPosition, int newItemPosition) {
-            return super.getChangePayload(oldItemPosition, newItemPosition);
-        }
-    }
+    };
 }

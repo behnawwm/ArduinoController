@@ -23,7 +23,7 @@ public class DimmerWidgetItem {
     public DimmerWidgetItem(String text, float progress, String command) {
         this.text = text;
         this.progress = progress;
-        this.progress = progress;
+        this.command = command;
     }
 
     public int getId() {

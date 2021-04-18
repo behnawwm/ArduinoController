@@ -68,7 +68,7 @@ public class DimmerWidgetBottomSheetDialog extends BottomSheetDialogFragment {
                     //save to DB
                     DimmerWidgetItem item = new DimmerWidgetItem(etName.getText().toString(),
                             0
-                            , etName.getText().toString());  //todo make pattern for new made items
+                            , "dimmer_" + etName.getText().toString());  //todo make pattern for new made items
 
                     if (savedItem == null)
                         mDimmerWidgetViewModel.insert(item);

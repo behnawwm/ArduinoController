@@ -32,30 +32,13 @@ public abstract class DimmerWidgetDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             DimmerWidgetDatabase.class, "dimmer_database")
-                            .addCallback(sRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration() //todo check
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
+    //todo add sample dimmer configs
 
-    private static final Callback sRoomDatabaseCallback = new Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-//                ButtonWidgetDao dao = INSTANCE.buttonWidgetDao();
-//                dao.deleteAll();
-
-//                ButtonWidgetItem word = new ButtonWidgetItem("1 or 0", 1, "1", "0");
-//                dao.insertAll(word);
-            });
-        }
-    };
 }
