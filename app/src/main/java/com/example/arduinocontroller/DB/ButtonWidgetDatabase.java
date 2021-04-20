@@ -24,17 +24,17 @@ public abstract class ButtonWidgetDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static ButtonWidgetDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (ButtonWidgetDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ButtonWidgetDatabase.class, "button_database")
-                            .build();
-                }
-            }
-        }
-        return INSTANCE;
-    }
+//    public static ButtonWidgetDatabase getDatabase(final Context context) {
+//        if (INSTANCE == null) {
+//            synchronized (ButtonWidgetDatabase.class) {
+//                if (INSTANCE == null) {
+//                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+//                            ButtonWidgetDatabase.class, "button_database")
+//                            .build();
+//                }
+//            }
+//        }
+//        return INSTANCE;
+//    }
     //todo add sample button configs
 }

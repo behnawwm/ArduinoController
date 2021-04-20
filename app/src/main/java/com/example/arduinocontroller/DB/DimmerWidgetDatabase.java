@@ -26,19 +26,19 @@ public abstract class DimmerWidgetDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static DimmerWidgetDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (DimmerWidgetDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DimmerWidgetDatabase.class, "dimmer_database")
-                            .fallbackToDestructiveMigration() //todo check
-                            .build();
-                }
-            }
-        }
-        return INSTANCE;
-    }
+//    public static DimmerWidgetDatabase getDatabase(final Context context) {
+//        if (INSTANCE == null) {
+//            synchronized (DimmerWidgetDatabase.class) {
+//                if (INSTANCE == null) {
+//                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+//                            DimmerWidgetDatabase.class, "dimmer_database")
+//                            .fallbackToDestructiveMigration() //todo check
+//                            .build();
+//                }
+//            }
+//        }
+//        return INSTANCE;
+//    }
     //todo add sample dimmer configs
 
 }

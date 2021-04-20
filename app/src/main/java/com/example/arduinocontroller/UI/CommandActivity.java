@@ -1,4 +1,4 @@
-package com.example.arduinocontroller;
+package com.example.arduinocontroller.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.arduinocontroller.R;
 import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetAdapter;
 import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetItem;
 import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetViewHolder;

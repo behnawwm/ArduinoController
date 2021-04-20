@@ -12,15 +12,21 @@ import com.example.arduinocontroller.DB.Repository.DimmerWidgetRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class DimmerWidgetViewModel extends AndroidViewModel {
 
     private DimmerWidgetRepository mRepository;
 
     private final LiveData<List<DimmerWidgetItem>> mAllItems;
 
-    public DimmerWidgetViewModel(Application application) {
+    @Inject
+    public DimmerWidgetViewModel(Application application, DimmerWidgetRepository repository) {
         super(application);
-        mRepository = new DimmerWidgetRepository(application);
+        mRepository = repository;
         mAllItems = mRepository.getAllItems();
     }
 

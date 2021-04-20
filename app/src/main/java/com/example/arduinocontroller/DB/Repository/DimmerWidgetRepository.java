@@ -12,13 +12,16 @@ import com.example.arduinocontroller.DB.Model.DimmerWidgetItem;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class DimmerWidgetRepository {
     private DimmerWidgetDao mDimmerWidgetDao;
     private LiveData<List<DimmerWidgetItem>> mAllItems;
 
-    public DimmerWidgetRepository(Application application) {
-        DimmerWidgetDatabase db = DimmerWidgetDatabase.getDatabase(application);
-        mDimmerWidgetDao = db.dimmerWidgetDao();
+
+    public DimmerWidgetRepository(DimmerWidgetDao dao) {
+//        DimmerWidgetDatabase db = DimmerWidgetDatabase.getDatabase(application);
+        mDimmerWidgetDao = dao;
         mAllItems = mDimmerWidgetDao.getAll();
     }
 

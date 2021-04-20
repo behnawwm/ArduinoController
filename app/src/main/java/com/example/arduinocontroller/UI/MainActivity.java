@@ -1,4 +1,4 @@
-package com.example.arduinocontroller;
+package com.example.arduinocontroller.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.arduinocontroller.R;
 import com.example.arduinocontroller.UI.PairedList.BluetoothListAdapter;
 import com.example.arduinocontroller.UI.PairedList.BluetoothListItem;
 import com.example.arduinocontroller.Utils.BluetoothReceiver;

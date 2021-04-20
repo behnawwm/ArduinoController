@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,17 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArduinoController">
         <activity android:name=".UI.Widgets.Dimmer.DimmerActivity">
-
-        </activity>
-        <activity android:name=".UI.Widgets.Button.ButtonActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CommandActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.Widgets.Button.ButtonActivity">
+
+        </activity>
+        <activity android:name=".UI.CommandActivity"></activity>
+        <activity android:name=".UI.MainActivity">
 
         </activity>
     </application>

@@ -10,15 +10,23 @@ import com.example.arduinocontroller.DB.Repository.ButtonWidgetRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import dagger.hilt.android.qualifiers.ApplicationContext;
+
+@HiltViewModel
 public class ButtonWidgetViewModel extends AndroidViewModel {
 
     private ButtonWidgetRepository mRepository;
 
     private final LiveData<List<ButtonWidgetItem>> mAllItems;
 
-    public ButtonWidgetViewModel(Application application) {
+    @Inject
+    public ButtonWidgetViewModel(Application application, ButtonWidgetRepository repository) {
         super(application);
-        mRepository = new ButtonWidgetRepository(application);
+//        mRepository = new ButtonWidgetRepository();
+        mRepository = repository;
         mAllItems = mRepository.getAllItems();
     }
 

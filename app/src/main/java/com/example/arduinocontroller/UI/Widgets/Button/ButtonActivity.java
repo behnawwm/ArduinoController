@@ -36,8 +36,10 @@ import com.skydoves.balloon.BalloonAnimation;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import stream.customalert.CustomAlertDialogue;
 
+@AndroidEntryPoint
 public class ButtonActivity extends AppCompatActivity implements ButtonWidgetViewHolder.OnWidgetButtonListener {
     BluetoothUtils bluetoothUtils;
 

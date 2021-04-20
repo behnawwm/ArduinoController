@@ -10,13 +10,18 @@ import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
 public class ButtonWidgetRepository {
     private ButtonWidgetDao mButtonWidgetDao;
     private LiveData<List<ButtonWidgetItem>> mAllItems;
 
-    public ButtonWidgetRepository(Application application) {
-        ButtonWidgetDatabase db = ButtonWidgetDatabase.getDatabase(application);
-        mButtonWidgetDao = db.buttonWidgetDao();
+
+    public ButtonWidgetRepository(ButtonWidgetDao dao) {
+//        ButtonWidgetDatabase db = ButtonWidgetDatabase.getDatabase(application);
+        mButtonWidgetDao = dao;
         mAllItems = mButtonWidgetDao.getAll();
     }
 

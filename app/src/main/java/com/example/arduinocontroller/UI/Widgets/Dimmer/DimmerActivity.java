@@ -32,8 +32,10 @@ import com.xw.repo.BubbleSeekBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import stream.customalert.CustomAlertDialogue;
 
+@AndroidEntryPoint
 public class DimmerActivity extends AppCompatActivity implements DimmerWidgetViewHolder.OnWidgetDimmerListener {
     private DimmerWidgetViewModel mDimmerWidgetViewModel;
     RecyclerView recyclerView;

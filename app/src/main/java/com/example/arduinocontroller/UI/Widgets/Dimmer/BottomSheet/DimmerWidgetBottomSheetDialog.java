@@ -23,8 +23,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import es.dmoral.toasty.Toasty;
 
+@AndroidEntryPoint
 public class DimmerWidgetBottomSheetDialog extends BottomSheetDialogFragment {
     private DimmerWidgetViewModel mDimmerWidgetViewModel;
 

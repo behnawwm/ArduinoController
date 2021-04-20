@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 30
@@ -36,6 +38,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.34.1-beta'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.34.1-beta'
 
     //recyclerView animations
     implementation "com.mikepenz:itemanimators:1.1.0"
