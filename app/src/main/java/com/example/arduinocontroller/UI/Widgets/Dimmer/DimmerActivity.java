@@ -12,11 +12,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.DB.Model.DimmerWidgetItem;
 import com.example.arduinocontroller.R;
-import com.example.arduinocontroller.UI.Widgets.Button.BottomSheet.ButtonWidgetBottomSheetDialog;
-import com.example.arduinocontroller.UI.Widgets.Button.ButtonActivity;
 import com.example.arduinocontroller.UI.Widgets.Dimmer.BottomSheet.DimmerWidgetBottomSheetDialog;
 import com.example.arduinocontroller.UI.Widgets.Dimmer.RV.DimmerWidgetAdapter;
 import com.example.arduinocontroller.UI.Widgets.Dimmer.RV.DimmerWidgetViewHolder;
@@ -27,7 +24,6 @@ import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
-import com.xw.repo.BubbleSeekBar;
 
 import java.util.ArrayList;
 import java.util.List;

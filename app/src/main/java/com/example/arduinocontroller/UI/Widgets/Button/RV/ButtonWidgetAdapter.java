@@ -1,20 +1,15 @@
 package com.example.arduinocontroller.UI.Widgets.Button.RV;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ButtonWidgetAdapter extends ListAdapter<ButtonWidgetItem, ButtonWidgetViewHolder> {
     private ButtonWidgetViewHolder.OnWidgetButtonListener mOnWidgetButtonListener;

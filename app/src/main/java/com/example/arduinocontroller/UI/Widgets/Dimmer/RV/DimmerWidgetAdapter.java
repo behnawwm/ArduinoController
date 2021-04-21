@@ -1,23 +1,15 @@
 package com.example.arduinocontroller.UI.Widgets.Dimmer.RV;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.arduinocontroller.DB.Model.ButtonWidgetItem;
 import com.example.arduinocontroller.DB.Model.DimmerWidgetItem;
 import com.example.arduinocontroller.R;
-import com.example.arduinocontroller.UI.Widgets.Dimmer.DimmerActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DimmerWidgetAdapter extends ListAdapter<DimmerWidgetItem, DimmerWidgetViewHolder> {
     private DimmerWidgetViewHolder.OnWidgetDimmerListener mOnWidgetDimmerListener;

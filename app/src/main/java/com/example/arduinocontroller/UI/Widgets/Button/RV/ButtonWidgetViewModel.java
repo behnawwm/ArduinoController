@@ -25,7 +25,6 @@ public class ButtonWidgetViewModel extends AndroidViewModel {
     @Inject
     public ButtonWidgetViewModel(Application application, ButtonWidgetRepository repository) {
         super(application);
-//        mRepository = new ButtonWidgetRepository();
         mRepository = repository;
         mAllItems = mRepository.getAllItems();
     }

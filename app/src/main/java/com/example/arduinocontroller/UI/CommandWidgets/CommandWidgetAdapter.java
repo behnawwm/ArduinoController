@@ -3,13 +3,10 @@ package com.example.arduinocontroller.UI.CommandWidgets;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arduinocontroller.R;
-import com.example.arduinocontroller.UI.Widgets.Button.RV.ButtonWidgetViewHolder;
 
 import java.util.ArrayList;
 

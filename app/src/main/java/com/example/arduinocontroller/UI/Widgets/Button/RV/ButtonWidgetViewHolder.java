@@ -47,30 +47,6 @@ public class ButtonWidgetViewHolder extends RecyclerView.ViewHolder implements V
             itemToggleView.setOnCheckedChangeListener(this);
         else
             itemToggleView.setOnTouchListener(this);
-
-
-        //todo fix instant touch and scroll
-//        if (item.getType() == ButtonWidgetItem.TYPE_PUSH) {
-//            itemToggleView.setOnTouchListener(new View.OnTouchListener() {
-//
-//                @Override
-//                public boolean onTouch(View v, MotionEvent event) {
-//                    if (event.getAction() == MotionEvent.ACTION_DOWN)
-//                        AnimationUtils.buttonWidgetTurnAnimation(v.getContext(), itemToggleView, true);
-//                    else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL)
-//                        AnimationUtils.buttonWidgetTurnAnimation(v.getContext(), itemToggleView, false);
-//
-//                    return true;
-//                }
-//            });
-//        } else {
-//            itemToggleView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    AnimationUtils.buttonWidgetTurnOnOffAnimation(itemView.getContext(), itemToggleView);
-//                }
-//            });
-//        }
     }
 
     @Override

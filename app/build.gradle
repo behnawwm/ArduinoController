@@ -14,6 +14,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -97,6 +98,13 @@ dependencies {
     //custom seekbar
      implementation 'com.xw.repo:bubbleseekbar:3.20'
 
+    //todo apply these
+    compile "com.daimajia.swipelayout:library:1.2.0@aar"
 
+
+    // ui Test
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
 
 }

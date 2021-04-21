@@ -13,6 +13,8 @@ import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetAdapter;
 import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetItem;
 import com.example.arduinocontroller.UI.CommandWidgets.CommandWidgetViewHolder;
 import com.example.arduinocontroller.UI.Widgets.Button.ButtonActivity;
+import com.example.arduinocontroller.UI.Widgets.Dimmer.DimmerActivity;
+import com.example.arduinocontroller.UI.Widgets.VoiceCommand.VoiceCommandActivity;
 
 import java.util.ArrayList;
 
@@ -61,9 +63,19 @@ public class CommandActivity extends AppCompatActivity implements CommandWidgetV
 //        changeItem(position, "Clicked");
         switch (position) {
             case 0:
-                Intent intent = new Intent(CommandActivity.this, ButtonActivity.class);
-                intent.putExtra(BLUETOOTH_ADDRESS, address);
-                startActivity(intent);
+                Intent intent0 = new Intent(CommandActivity.this, ButtonActivity.class);
+                intent0.putExtra(BLUETOOTH_ADDRESS, address);
+                startActivity(intent0);
+                break;
+            case 1:
+                Intent intent1 = new Intent(CommandActivity.this, DimmerActivity.class);
+                intent1.putExtra(BLUETOOTH_ADDRESS, address);
+                startActivity(intent1);
+                break;
+            case 2:
+                Intent intent2 = new Intent(CommandActivity.this, VoiceCommandActivity.class);
+                intent2.putExtra(BLUETOOTH_ADDRESS, address);
+                startActivity(intent2);
                 break;
             default:
 
